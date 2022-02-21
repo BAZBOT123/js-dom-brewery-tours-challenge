@@ -1,6 +1,7 @@
 const state = {
   breweries: [],
-  type: []
+  type:[]
+
 }
 
 const container = document.querySelector('#breweries-list')
@@ -56,6 +57,9 @@ function render() {
 function clear() {
   inputEl.innerHTML = ''
   inputEl.value = ''
+  while (ulEl.hasChildNodes()) {
+    ulEl.removeChild(ulEl.firstChild)
+  }
 }
 
 function formList(){
@@ -76,7 +80,13 @@ function formList(){
 function filter(){
   formEl.addEventListener('change', function () {
     const FILTER = filterEl.value
-    fetch(`https://api.openbrewerydb.org/breweries?by_state=${stateEl.value}&by_type=${FILTER}`)
+    console.log("Hello", FILTER)
+
+    let url = `https://api.openbrewerydb.org/breweries?by_state=${stateEl.value}` 
+    if (FILTER != ""){
+      url += `&by_type=${FILTER}`
+    }
+    fetch(url)
     .then(function (response) {
       return response.json()
     })
@@ -92,5 +102,7 @@ formList()
 filter()
 
 
-
-
+//IGNORE
+// let url = `https://api.openbrewerydb.org/breweries?by_state=${stateEl.value}` 
+// //If FILTER is not an empty string, append this on to the URL: &by_type=${FILTER}`
+// fetch(url)
