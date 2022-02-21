@@ -81,7 +81,6 @@ function filter(){
   formEl.addEventListener('change', function () {
     const FILTER = filterEl.value
     console.log("Hello", FILTER)
-
     let url = `https://api.openbrewerydb.org/breweries?by_state=${stateEl.value}` 
     if (FILTER != ""){
       url += `&by_type=${FILTER}`
@@ -102,7 +101,17 @@ formList()
 filter()
 
 
-//IGNORE
-// let url = `https://api.openbrewerydb.org/breweries?by_state=${stateEl.value}` 
-// //If FILTER is not an empty string, append this on to the URL: &by_type=${FILTER}`
-// fetch(url)
+
+const searchEl = document.querySelector('#search-breweries')
+const collection = ulEl.getElementsByTagName('li')
+
+function searchBrew(){
+  searchEl.addEventListener('input', function (event) {
+    event.preventDefault()
+    for (names of choice.name){
+      if (names.indexOf(innerText))
+
+      render()
+    }
+  })
+}
